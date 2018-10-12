@@ -1,6 +1,8 @@
 package spring;
 import java.util.Date;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -11,7 +13,7 @@ public class MemberRegisterService {
 	//@Resource(name="guestDao")
 	@Autowired
 	@Qualifier("memsel")
-	private Dao memberDao;
+	private Dao memberDao2;
 	
 	//@Autowired
 	/*public MemberRegisterService(MemberDao memberDao) {
@@ -25,7 +27,7 @@ public class MemberRegisterService {
 
 	
 	public void regist(RegisterRequest req) {
-	Member member = memberDao.selectByEmail(req.getEmail());
+	Member member = memberDao2.selectByEmail(req.getEmail());
 	if (member != null) {
 	throw new AlreadyExistingMemberException("dup email "+
 	req.getEmail());
@@ -33,7 +35,7 @@ public class MemberRegisterService {
 	Member newMember = new Member(
 	req.getEmail(), req.getPassword(), req.getName(),
 	new Date());
-	memberDao.insert(newMember);
+	memberDao2.insert(newMember);
 	}
 
 

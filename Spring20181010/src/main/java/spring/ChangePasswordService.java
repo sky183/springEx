@@ -11,9 +11,9 @@ public class ChangePasswordService {
 	this.memberDao = memberDao;
 	}*/
 	
-	public void setMemberDao(MemberDao memberDao) {
+/*	public void setMemberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
-	}
+	}*/
 	
 	public void changePassword(String email, String oldPwd, String newPwd) {
 	Member member = memberDao.selectByEmail(email);

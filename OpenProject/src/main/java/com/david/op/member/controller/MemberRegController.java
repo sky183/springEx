@@ -31,9 +31,10 @@ public class MemberRegController {
 	public ModelAndView regDo(HttpServletRequest request,
 			Memberinfo memberinfo) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/member_page");
+		modelAndView.setViewName("/joinComplete_page");
 		try {
 			memberReg.memberRegDo(request, memberinfo);
+			modelAndView.addObject("memberinfo", memberinfo);
 		} catch (Exception e) {
 			String errorMsg = "등록에 실패하였습니다";
 			modelAndView.setViewName("/join_page");

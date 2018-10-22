@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.david.op.jdbc.ConnectionProvider;
 import com.david.op.jdbc.JdbcUtil;
-import com.david.op.member.dao.MemDAO;
+import com.david.op.member.dao.JdbcTemplateMemberDao;
 import com.david.op.member.model.Logininfo;
 import com.david.op.member.model.Memberinfo;
 
@@ -18,7 +18,7 @@ import com.david.op.member.model.Memberinfo;
 public class MemberLoginService {
 	
 	@Autowired
-	MemDAO memDAO;
+	JdbcTemplateMemberDao jdbcTemplateMemberDao;
 	
 	public boolean login(String id,String pw, HttpSession session) throws SQLException{
 		boolean result = false;
@@ -27,7 +27,7 @@ public class MemberLoginService {
 		
 		try {
 			conn=ConnectionProvider.getConnection();
-			Memberinfo memberinfo = memDAO.selectUser(conn, id);
+			Memberinfo memberinfo = jdbcTemplateMemberDao.selectUser(id);
 			
 			if(memberinfo!=null && pw.equals(memberinfo.getUSERPW())) {
 				loginfo.setUSERID(memberinfo.getUSERID());

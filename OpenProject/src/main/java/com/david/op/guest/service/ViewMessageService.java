@@ -22,7 +22,7 @@ public class ViewMessageService {
 		Message message=null;
 		try {
 			conn=ConnectionProvider.getConnection();
-			message=messageDAO.select(conn, messageId);
+			message=messageDAO.select(messageId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;

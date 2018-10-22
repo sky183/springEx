@@ -27,14 +27,14 @@ public class GetMessageListService {
 		try {
 			conn = ConnectionProvider.getConnection();
 			// 전체 메시지 구하기
-			int messageTotalCount = messageDAO.selectCount(conn);
+			int messageTotalCount = messageDAO.selectCount();
 			List<Message> messageList = null;
 			int firstRow = 0;
 			int endRow = 0;
 			if (messageTotalCount > 0) {
 				firstRow = (pageNumber - 1) * MESSAGE_COUNT_PER_PAGE + 1;
 				endRow = firstRow + MESSAGE_COUNT_PER_PAGE - 1;
-				messageList = messageDAO.selectList(conn, firstRow, endRow);
+				messageList = messageDAO.selectList(firstRow, endRow);
 			} else {
 				currentPageNumber = 0;
 				messageList = Collections.emptyList();

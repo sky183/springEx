@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 
 import com.david.op.jdbc.ConnectionProvider;
 import com.david.op.jdbc.JdbcUtil;
-import com.david.op.member.dao.MemDAO;
+import com.david.op.member.dao.JdbcTemplateMemberDao;
 
 @Component
 public class MemberDeleteService {
-
+	
 	@Autowired
-	MemDAO memDAO;
+	JdbcTemplateMemberDao jdbcTemplateMemberDao;
 
 	public void memberDelete(String dkey) throws SQLException {
 		Connection conn = null;
@@ -22,7 +22,7 @@ public class MemberDeleteService {
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
-			memDAO.deleteUser(conn, dkey);
+			jdbcTemplateMemberDao.deleteUser(dkey);
 			conn.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollback(conn);

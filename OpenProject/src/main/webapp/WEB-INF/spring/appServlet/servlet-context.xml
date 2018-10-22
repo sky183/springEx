@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans
-	xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
@@ -35,15 +35,31 @@
 
 	<interceptors>
 		<interceptor>
-			<mapping path="/member/myPage/**"/>
-			<mapping path="/guestbook/**"/>
-			<beans:bean class="com.david.op.interceptor.AuthCheckInterceptor">
+			<mapping path="/member/myPage/**" />
+			<mapping path="/guestbook/**" />
+			<beans:bean
+				class="com.david.op.interceptor.AuthCheckInterceptor">
 			</beans:bean>
 		</interceptor>
 	</interceptors>
 
-	<context:component-scan base-package="com.david.op" />
+	<context:component-scan
+		base-package="com.david.op" />
+
+	<beans:bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<beans:property name="driverClass"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<beans:property name="jdbcUrl"
+			value="jdbc:oracle:thin:@localhost:1521:orcl" />
+		<beans:property name="user" value="OPENPROJECT" />
+		<beans:property name="password" value="1234" />
+	</beans:bean>
+
+	<beans:bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate"
+		p:dataSource-ref="dataSource" />
 
 </beans:beans>
 
-	
+

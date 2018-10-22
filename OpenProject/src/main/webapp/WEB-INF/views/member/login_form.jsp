@@ -85,7 +85,7 @@
 	<c:otherwise>
 		<div>
 			<form id="USERJOIN" method="post">
-				<table>
+				<table class="loginTable">
 					<tr>
 						<td><label for="USERID">아이디</label></td>
 						<td><input type="text" class="input_login" id="USERID"

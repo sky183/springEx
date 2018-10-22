@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.david.op.jdbc.ConnectionProvider;
+import com.david.op.jdbc.JdbcUtil;
 import com.david.op.member.dao.MemDAO;
 import com.david.op.member.model.Memberinfo;
 
@@ -18,7 +19,7 @@ public class MemberValidCheckService {
 	
 	public String idValidCheck(String userId) throws SQLException {
 		String msg="사용 가능한 아이디입니다.";
-		Connection conn;
+		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			Memberinfo memberinfo = memDAO.selectUser(conn, userId);
@@ -31,6 +32,8 @@ public class MemberValidCheckService {
 			}
 		} catch (SQLException e) {
 			throw e;
+		} finally {
+			JdbcUtil.close(conn);
 		}
 		return msg;
 	}

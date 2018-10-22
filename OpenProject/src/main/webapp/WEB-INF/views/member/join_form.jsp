@@ -22,7 +22,7 @@
     </script>
     <div>
         <form id="USERJOIN" method="post" enctype="multipart/form-data">
-            <table>
+            <table class="joinTable">
                 <tr>
                     <td><label for="USERID">아이디</label></td>
                     <td><input type="text" class="input_login" id="USERID" name="USERID"></td>

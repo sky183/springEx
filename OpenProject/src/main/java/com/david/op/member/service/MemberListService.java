@@ -4,23 +4,26 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.david.op.jdbc.ConnectionProvider;
 import com.david.op.jdbc.JdbcUtil;
-import com.david.op.member.dao.MemDAO;
+import com.david.op.member.dao.JdbcTemplateMemberDao;
 import com.david.op.member.model.Memberinfo;
 
 @Component
 public class MemberListService {
 	
-	public List<Memberinfo> memberListView(ModelAndView modelAndView, MemDAO memDao) throws SQLException{
+	@Autowired
+	JdbcTemplateMemberDao jdbcTemplateMemberDao;
+	
+	public List<Memberinfo> memberListView() throws SQLException{
 		List<Memberinfo> members=null;
 		Connection conn=null;;
 		try {
 			conn = ConnectionProvider.getConnection();
-			members = memDao.selectAllUsers(conn);
+			members = jdbcTemplateMemberDao.selectAllUsers();
 		} finally {
 			JdbcUtil.close(conn);
 		}

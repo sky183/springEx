@@ -9,15 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.david.op.member.dao.MemDAO;
 import com.david.op.member.model.Memberinfo;
 import com.david.op.member.service.MemberListService;
 
 @Controller
 public class MemberListController {
-	
-	@Autowired
-	MemDAO memDao;
 	
 	@Autowired
 	MemberListService memberListService;
@@ -43,7 +39,7 @@ public class MemberListController {
 		
 			List<Memberinfo> members = null;
 			try {
-				members = memberListService.memberListView(modelAndView, memDao);
+				members = memberListService.memberListView();
 			} catch (SQLException e) {
 				System.out.println("리스트 출력에 실패하였습니다.");
 			}

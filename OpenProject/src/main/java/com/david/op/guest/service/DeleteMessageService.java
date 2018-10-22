@@ -27,13 +27,13 @@ public class DeleteMessageService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			Logininfo loginfo = (Logininfo)session.getAttribute("loginfo");
-			Message message = messageDAO.select(conn, messageId);
+			Message message = messageDAO.select(messageId);
 			if (message == null) {
 				throw new MessageNotFoundException("메시지가 없습니다:" + messageId);
 			} else if (!loginfo.getUSERID().equals(message.getUSERID())) {
 				throw new MessageInvalidOwnerException("본인의 메세지만 삭제가 가능합니다.");
 			}
-			messageDAO.delete(conn, messageId);
+			messageDAO.delete(messageId);
 			conn.commit();
 		} catch (SQLException ex) {
 			JdbcUtil.rollback(conn);

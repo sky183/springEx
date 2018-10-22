@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.david.op.jdbc.ConnectionProvider;
 import com.david.op.jdbc.JdbcUtil;
-import com.david.op.member.dao.MemDAO;
+import com.david.op.member.dao.JdbcTemplateMemberDao;
 import com.david.op.member.model.Memberinfo;
 
 import java.io.File;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MemberRegService {
 
 	@Autowired
-	private MemDAO memDao;
+	private JdbcTemplateMemberDao jdbcTemplateMemberDao;
 
 	public void memberRegDo(HttpServletRequest request, Memberinfo memberinfo) throws Exception {
 		Connection conn = null;
@@ -42,9 +42,9 @@ public class MemberRegService {
 			}
 
 			if (request.getParameter("mkey") != null) {
-				memDao.updateUser(conn, memberinfo);
+				jdbcTemplateMemberDao.updateUser(memberinfo);
 			} else {
-				memDao.insertUser(conn, memberinfo);
+				jdbcTemplateMemberDao.insertUser(memberinfo);
 			}
 			conn.commit();
 		} catch (IOException e) {

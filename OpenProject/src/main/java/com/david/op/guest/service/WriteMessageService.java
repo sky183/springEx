@@ -21,7 +21,7 @@ public class WriteMessageService {
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
-			messageDAO.insert(conn,msg);
+			messageDAO.insert(msg);
 			conn.commit();
 		}catch(SQLException e) {
 			JdbcUtil.rollback(conn);

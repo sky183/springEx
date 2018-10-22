@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/op/resources/cssAll.css" type="text/css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/cssAll.css" type="text/css">
 </head>
 <body>
 	<div id="test_container">

@@ -1,16 +1,14 @@
 package com.david.op.guest.service;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.david.op.guest.dao.MessageDAO;
-import com.david.op.jdbc.ConnectionProvider;
-import com.david.op.jdbc.JdbcUtil;
 import com.david.op.member.model.Logininfo;
 import com.david.op.guest.model.Message;
 
@@ -18,14 +16,11 @@ import com.david.op.guest.model.Message;
 public class DeleteMessageService {
 	@Autowired
 	private MessageDAO messageDAO;
-
+	
+	@Transactional
 	public void deleteMessage(int messageId,HttpSession session)
 			throws ServiceException, MessageNotFoundException, MessageInvalidOwnerException {
-
-		Connection conn = null;
 		try {
-			conn = ConnectionProvider.getConnection();
-			conn.setAutoCommit(false);
 			Logininfo loginfo = (Logininfo)session.getAttribute("loginfo");
 			Message message = messageDAO.select(messageId);
 			if (message == null) {
@@ -34,17 +29,10 @@ public class DeleteMessageService {
 				throw new MessageInvalidOwnerException("본인의 메세지만 삭제가 가능합니다.");
 			}
 			messageDAO.delete(messageId);
-			conn.commit();
 		} catch (SQLException ex) {
-			JdbcUtil.rollback(conn);
 			throw new ServiceException("삭제 처리 중 에러가 발생했습니다:" + ex.getMessage(), ex);
 		} catch (MessageNotFoundException ex) {
-			JdbcUtil.rollback(conn);
 			throw ex;
-		} finally {
-			if (conn != null) {
-				JdbcUtil.close(conn);
-			}
 		}
 
 	}

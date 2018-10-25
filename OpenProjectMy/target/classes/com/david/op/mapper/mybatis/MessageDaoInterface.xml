@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.david.op.guest.dao.MessageDaoInterface" >
+	<select id="selectMessage"
+		resultType="com.david.op.guest.model.Message">
+		select * from GUEST_MSG where message_id= #{userid}
+	</select>
+	
+	<select id="selectMessageList"
+		resultType="com.david.op.guest.model.Message">
+		select * from GUEST_MSG order by message_id desc limit #{param1},#{param2}
+	</select>
+	
+	<select id="selectMessageCount"
+		resultType="int">
+		select count(*) from GUEST_MSG
+	</select>
+	
+	<insert id="insertMessage"
+		parameterType="com.david.op.guest.model.Message"
+		useGeneratedKeys="true" keyColumn="message_id">
+		insert into GUEST_MSG(USERID,USERNAME,message) 
+		values(#{USERID},#{USERNAME},#{message})
+	</insert>
+	
+	<delete id="deleteMessage">
+		delete from GUEST_MSG where message_id = #{userid}
+	</delete>
+</mapper>

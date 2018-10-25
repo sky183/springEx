@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.david.op.member.dao.MemberDaoInterface">
+ 	<insert id="insertMember"
+ 		parameterType="com.david.op.member.model.Memberinfo"
+ 		useGeneratedKeys="true" keyColumn="idx">
+ 		insert into member (USERID,USERPW,USERNAME,USERFILE,REGDATE)
+ 		values (#{USERID},#{USERPW},#{USERNAME},#{USERFILE},now())
+ 	</insert>
+ 	
+ 	<update id="updateMember"
+ 		parameterType="com.david.op.member.model.Memberinfo">
+ 		update MEMBER set 
+ 		USERID=#{USERID},USERPW=#{USERPW},USERNAME=#{USERNAME},USERFILE=#{USERFILE} 
+ 		where USERID=#{USERID}
+ 	</update>
+ 	
+ 	<select id="selectMember" 
+ 		resultType="com.david.op.member.model.Memberinfo">
+ 		select * from member where userid = #{id}
+ 	</select>
+ 	
+ 	<select id="selectAllMembers"
+ 		resultType="com.david.op.member.model.Memberinfo">
+ 		select * from MEMBER order by IDX desc
+ 	</select>
+ 	
+ 	<delete id="deleteMember">
+ 		delete from MEMBER where USERID=#{id}
+ 	</delete>
+ 	
+ </mapper>

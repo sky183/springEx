@@ -1,0 +1,221 @@
+@charset "UTF-8";
+
+* {
+	padding: 0px;
+	margin: 0px;
+}
+
+#test_container {
+	position: relative;
+	width: 60%;
+	margin: 0 auto;
+}
+
+#test_header {
+	position: relative;
+	margin: 30px 0px;
+	height: 70px;
+	text-align: center;
+}
+
+.btn {
+	display: inline-block;
+	padding: 5px 15px;
+	color: white;
+	background-color: #008080;
+	border: 1px solid black;
+	border-radius: 5px;
+	text-decoration: none;
+}
+
+.btn:hover{
+	cursor: pointer;
+}
+
+#test_header #hh {
+	text-align: center;
+}
+
+.input_login {
+	height: 15px;
+	width: 200px;
+	padding: 5px;
+}
+
+.loginLa{
+	font-size: 12px;
+	color:red;
+}
+
+#USERJOIN td{
+	max-width:214px;
+	padding-bottom: 5px;
+}
+
+#USERFILE {
+	width: 100%;
+	height: 25px;
+	margin-bottom: 5px;
+}
+
+#USERSUB {
+	text-align: center;
+}
+
+#test_navi {
+	margin: 15px 0 5px 0;
+	height: 30px;
+	text-align: center;
+	overflow: hidden;
+	border-bottom: 3px solid red;
+}
+
+#test_navi ul li {
+	display: inline-block;
+}
+
+#test_navi ul li:hover {
+	color: grey;
+	border-bottom: 5px solid black;
+}
+
+.navi_btn {
+	font-size: 20px;
+	list-style: none;
+	text-decoration: none;
+	color: black;
+	padding: 5px;
+}
+
+#test_wrap {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+}
+
+#test_box1 {
+	position: relative;
+	width: 70%;
+	float: left;
+}
+
+#test_con1 {
+	width:95%;
+	padding: 10px;
+	margin: 20px auto;
+	word-wrap:break-word;
+}
+
+#test_box2 {
+	position: relative;
+	width: 30%;
+	float: right;
+}
+
+#test_con2 {
+	padding: 20px;
+}
+
+#test_footer {
+	position: relative;
+	width:100%;
+	text-align: center;
+}
+#memberPhoto{
+	background-image: url('../img/black.png');
+	background-size:100%;
+	border-radius: 75px;
+	height:150px;
+	width:150px;
+	border: 1px color black;
+	margin: 20px 0;
+}
+#wrongIDPW{
+	display:block;
+	margin:50px auto;
+	background-color: #D8D8D8;
+	width:50%;
+	overflow:hidden;
+	text-align: center;
+	border-radius: 20px;
+}
+#wrongIDPW h2,#wrongIDPW h3{
+	padding: 20px 
+}
+#wrongIDPW a{
+	text-decoration: none;
+	color:white;
+}
+.userPhoto {
+	float:left;
+	width:20%;
+	text-align: center;
+}
+
+.userbox .profile {
+	height: 100px;
+	width: 100px;
+}
+
+.userInfo {
+	float:left;
+	width: 50%;
+}
+
+.userModi{
+	float:left;
+	vertical-align: middle;
+	height: auto;
+}
+
+.userbox {
+	width: 100%;
+	position: relative;
+	display: inline-block;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid grey;
+}
+.userbox div{
+	padding-right: 5px;
+}
+.userbox div .modibtn{
+	margin:5px 0px;
+}
+
+.readOnly{
+	background-color: #f2f4f7;
+}
+
+.mlistbox{
+	
+}
+
+.validform{
+	color:green;
+	font-size:12px;
+}
+.invalidform{
+	color:red;
+	font-size:12px;
+}
+
+#viewType{
+	float:right;
+	overflow: hidden;
+	height:20px;
+}
+
+.memHeader{
+	height: 30px;
+	text-align: right;	
+}
+.memList{
+	
+}
+.joinTable{
+	margin:30px auto;
+}
+.loginTable{
+	margin:30px auto;
+}
